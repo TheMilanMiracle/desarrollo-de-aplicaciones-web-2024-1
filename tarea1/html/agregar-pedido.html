@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es-cl">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo Pedido</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="upper-bar">
+
+        <a class="home-button" href="./index.html">Inicio</a>
+
+        <h1>Añadir un nuevo pedido</h1>
+
+    </div>
+
+    <div class="background">
+        <div id="form-container" class="bordered">
+            <form id="new-form">
+                <div class="form-item horizontal-flex">
+                    <span><span class="error">*</span>Tipo de producto</span>
+                    
+                    <div>
+                        <label for="fruit-checkbox">Fruta</label>
+                        <input type="checkbox" id="fruit-checkbox">
+                    </div>
+
+                    <div>
+                        <label for="vegetable-checkbox">Vegetal</label>
+                        <input type="checkbox" id="vegetable-checkbox">
+                    </div>
+
+                    <span class="error" id="error1"></span>
+
+                </div>
+                
+                <div class="form-item">
+
+                    <div class="horizontal-flex">
+                        <label for="product-select"><span class="error">*</span>Agregar producto (Máximo 5)</label>
+                        <select name="product-select" id="product-select" disabled></select>
+
+                        <span class="error" id="error2"></span>
+
+                    </div>
+                    
+                </div>
+
+                <div class="form-item">
+
+                    <div class="horizontal-flex">
+                        <div id="product-1"><p></p></div>
+                        <div id="product-2"><p></p></div>
+                        <div id="product-3"><p></p></div>
+                        <div id="product-4"><p></p></div>
+                        <div id="product-5"><p></p></div>
+                    </div>
+
+                </div>
+
+                <div class="form-item">
+
+                    <div class="horizontal-flex">
+                        <label for="description">Descripción</label>
+                        <textarea id="description" rows="4" cols="50" ></textarea>
+                    </div>
+
+                </div>
+
+                <div class="form-item">
+
+                    <div class="horizontal-flex">
+                    <label for="region-select"><span class="error">*</span>Región</label>
+                    <select id="region-select"></select>
+
+                    <span class="error" id="error4"></span>
+                    </div>
+
+                </div>
+
+                <div class="form-item">
+
+                    <div class="horizontal-flex">
+                    <label for="city-select"><span class="error">*</span>Comuna</label>
+                    <select id="city-select"></select>
+
+                    <span class="error" id="error5"></span>
+                    </div>
+
+                </div>
+
+                <div class = "form-item">
+
+                    <div class="horizontal-flex">
+                    <label for="name"><span class="error">*</span>Nombre comprador</label>
+                    <input type="text" id="name" size="80" minlength="3" maxlength="80">
+
+                    <span class="error" id="error6"></span>
+                    </div>
+
+                </div>
+
+                <div class = "form-item">
+
+                    <div class="horizontal-flex">
+                    <label for="email"><span class="error">*</span>Email comprador</label>
+                    <input type="text" id="email"  size="30" minlength="3" maxlength="80">
+
+                    <span class="error" id="error7"></span>
+                    </div>
+
+                </div>
+
+                <div class = "form-item">
+
+                    <div class="horizontal-flex">
+                    <label for="phone">Número telefónico comprador</label>
+                    <input type="text" id="phone"  size="15" minlength="3" maxlength="80">
+
+                    <span class="error" id="error8"></span>
+                    </div>
+
+                </div>
+
+                <div>
+                    <button type="button" class="button1" id="submit-button">Agregar pedido</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="modal" class="modal" data-value="pedido">
+        </div>
+
+    </div>
+
+    
+    <script src="../js/form.js"></script>
+
+</body>
