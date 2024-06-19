@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %} Nuevo {{ kind }} {% endblock %}
+
+{% block navbar %} 
+
+<a class="home-button" href="/">Inicio</a>
+
+<h1>Añadir un nuevo {{ kind }}</h1>
+
+{% endblock %}
+
+{% block content%}
+
+<div id="form-container" class="bordered">
+
+    {% for info in product %}
+
+        <div class="info">
+            <h2>{{ info[0] }}</h2>
+
+            {% if info[0]!="Fotos"%}
+
+                <p>{{ info[1] }}</p>
+
+
+            {% else %}
+
+                {% for image, i in info[1] %}
+
+                <img id="img{{i}}" src="{{ image }}" width=640 height=480 alt="foto">
+
+                {% endfor %}
+
+            {% endif %}
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+<div id="image">
+</div>
+
+{% endblock %}
+
+{% block script %}<script src="{{ url_for('static', filename='js/info.js') }}"></script>{% endblock %}

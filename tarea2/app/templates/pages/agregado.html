@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %} Información {{ kind }} {% endblock %}
+
+{% block navbar %} 
+
+<a class="home-button" href="/">Inicio</a>
+
+<h1>Añadir un nuevo {{ kind }}</h1>
+
+{% endblock %}
+
+{% block content%}
+
+<div id="form-container" class="bordered">
+    <h2>Nuevo {{ kind }} agregado</h2>
+    <br>
+    <br>
+    <br>
+    <a href="{{ url_for('agregar_'+kind) }}"><h2>¿Agregar otro {{ kind }}?</h2></a>
+    <a href="{{ url_for('index') }}"><h2>¿Volver al inicio?</h2></a>
+</div>
+
+{% endblock %}
