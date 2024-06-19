@@ -30,3 +30,8 @@ Tal como pide el enunciado, la información de la tabla se construye en el backe
 Ya que todas las templates usadas vienen desde la misma base, preferí mantener todo el CSS (mismo de la tarea1) en el mismo archivo.
 
 Todo contenido usado en templates es creado en el backend, para evitar inseguridades relacionadas con inputs de usuario
+
+
+
+
+CONEXION A LA BASE DE DATOS CON T2 EN VEZ DE T3

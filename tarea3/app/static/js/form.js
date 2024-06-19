@@ -1,142 +1,3 @@
-const PRODUCTS = {
-    "fruit":[
-        "Arándano",
-        "Frambuesa",
-        "Frutilla",
-        "Grosella",
-        "Mora",
-        "Limón",
-        "Mandarina",
-        "Naranja",
-        "Pomelo",
-        "Melón",
-        "Sandía",
-        "Palta",
-        "Chirimoya",
-        "Coco",
-        "Dátil",
-        "Kiwi",
-        "Mango",
-        "Papaya",
-        "Piña",
-        "Plátano",
-        "Damasco",
-        "Cereza",
-        "Ciruela",
-        "Higo",
-        "Kaki",
-        "Manzana",
-        "Durazno",
-        "Nectarin",
-        "Níspero",
-        "Pera",
-        "Uva",
-        "Almendra",
-        "Avellana",
-        "Maní",
-        "Castaña",
-        "Nuez",
-        "Pistacho"
-    ],
-    "vegetable":[
-        "Brócoli",
-        "Repollo",
-        "Coliflor",
-        "Rábano",
-        "Alcachofa",
-        "Lechuga",
-        "Zapallo",
-        "Pepino",
-        "Haba",
-        "Maíz",
-        "Champiñón",
-        "Acelga",
-        "Apio",
-        "Espinaca",
-        "Perejil",
-        "Ajo",
-        "Cebolla",
-        "Espárrago",
-        "Puerro",
-        "Remolacha",
-        "Berenjena",
-        "Papa",
-        "Pimiento",
-        "Tomate",
-        "Zanahoria"
-    ]
-}
-
-const REGIONS = {
-	"regiones": [
-        {
-            "region": "Región de Tarapacá",
-            "comunas": ["Alto Hospicio", "Camiña", "Colchane", "Huara", "Iquique", "Pica", "Pozo Almonte"]
-        },
-        {
-            "region": "Región de Antofagasta",
-            "comunas": ["Antofagasta", "Calama", "María Elena", "Mejillones", "Ollagüe", "San Pedro Atacama", "Sierra Gorda", "Taltal", "Tocopilla"]
-        },
-        {
-            "region": "Región de Atacama",
-            "comunas": ["Alto del Carmen", "Caldera", "Chañaral", "Copiapó", "Diego de Almagro", "Freirina", "Huasco", "Tierra Amarilla", "Vallenar"]
-        },
-        {
-            "region": "Región de Coquimbo",
-            "comunas": ["Andacollo", "Combarbalá", "Coquimbo", "Illapel", "La Higuera", "La Serena", "Los Vilos", "Monte Patria", "Ovalle", "Paihuano", "Punitaqui", "Río Hurtado", "Salamanca", "Vicuña"]
-        },
-        {
-            "region": "Región de Valparaíso",
-            "comunas": ["Algarrobo", "Cabildo", "Calle Larga", "Cartagena", "Casablanca", "Catemu", "Concón", "El Quisco", "El Tabo", "Hijuelas", "Isla de Pascua", "Juan Fernández", "La Calera", "La Cruz", "La Ligua", "Limache", "Llay Llay", "Los Andes", "Nogales", "Olmué", "Papudo", "Pencahue",  "Petorca", "Puchuncaví", "Putaendo", "Quillota", "Quilpué", "Quintero", "Rinconada", "San Antonio", "San Esteban", "San Felipe", "Santa María", "Santo Domingo", "Valparaíso", "Villa Alemana", "Viña del Mar", "Zapallar"]
-        },
-        {
-            "region": "Región del Libertador Bernardo Ohiggins",
-            "comunas": ["Chépica", "Chimbarongo", "Codegua", "Coinco", "Coltauco", "Doñihue", "Graneros", "La Estrella", "Las Cabras", "Litueche", "Lolol", "Machalí", "Malloa", "Marchigue", "Mostazal", "Nancagua", "Navidad", "Olivar", "Palmilla", "Paredones", "Peralillo", "Peumo", "Pichidegua", "Pichilemu", "Placilla", "Pumanque", "Quinta Tilcoco", "Rancagua", "Rengo", "Requínoa", "San Fernando", "San Vicente", "Santa Cruz"]
-        },
-        {
-            "region": "Región del Maule",
-            "comunas": ["Cauquenes", "Chanco", "Colbún", "Constitución", "Curepto", "Curicó", "Empedrado", "Hualañé", "Licantén", "Linares", "Longaví", "Maule", "Molina", "Parral", "Pelarco", "Pelluhue", "Pencahue", "Rauco", "Retiro", "Río Claro", "Romeral", "Sagrada Familia", "San Clemente", "San Javier", "San Rafael", "Talca", "Teno", "Vichuquén", "Villa Alegre", "Yerbas Buenas"]
-        },
-        {
-            "region": "Región del Biobío",
-            "comunas": ["Alto Bio Bío", "Antuco", "Arauco", "Cabrero", "Cañete", "Chiguayante", "Concepción", "Contulmo", "Coronel", "Curanilahue", "Florida", "Hualpén", "Hualqui", "Laja", "Lebu", "Los Álamos", "Los Ángeles", "Lota", "Mulchén", "Nacimiento", "Negrete", "Penco", "Quilaco", "Quilleco", "San Pedro de la Paz", "San Rosendo", "Santa Bárbara", "Santa Juana", "Talcahuano", "Tirúa", "Tomé", "Tucapel", "Yumbel"]
-        },
-        {
-            "region": "Región de La Araucanía",
-            "comunas": ["Angol", "Carahue", "Cholchol", "Collipulli", "Cunco", "Curacautín", "Curarrehue", "Ercilla", "Freire", "Galvarino", "Gorbea", "Lautaro", "Loncoche", "Lonquimay", "Los Sauces", "Lumaco", "Melipeuco", "Nueva Imperial", "Padre las Casas", "Perquenco", "Pitrufquén", "Pucón", "Puerto Saavedra", "Purén", "Renaico", "Temuco", "Teodoro Schmidt", "Toltén", "Traiguén", "Victoria", "Vilcún", "Villarrica"]
-        },
-        {
-            "region": "Región de Los Lagos",
-            "comunas": ["Ancud", "Calbuco", "Castro", "Chaitén", "Chonchi", "Cochamó", "Curaco de Vélez", "Dalcahue", "Fresia", "Frutillar", "Futaleufú", "Hualaihué", "Llanquihue", "Los Muermos", "Maullín", "Osorno", "Palena", "Puerto Montt", "Puerto Octay", "Puerto Varas", "Puqueldón", "Purranque", "Puyehue", "Queilén", "Quellón", "Quemchi", "Quinchao", "Río Negro", "San Juan", "San Pablo"]
-        },
-        {
-            "region": "Región Aisén del General Carlos Ibáñez del Campo",
-            "comunas": ["Aysen", "Chile Chico", "Cisnes", "Cochrane", "Coyhaique", "Guaitecas", "Lago Verde", "O'Higins", "Río Ibá?ez", "Tortel"]
-        },
-        {
-            "region": "Región de Magallanes y la Antártica Chilena",
-            "comunas": ["Antártica", "Porvenir", "Primavera", "Puerto Natales", "Punta Arenas", "Río Verde", "San Gregorio", "Timaukel", "Torres del Paine"]
-        },
-        {
-            "region": "Región Metropolitana de Santiago",
-            "comunas": ["Alhué", "Buin", "Calera de Tango", "Cerrillos", "Cerro Navia", "Colina", "Conchalí", "Curacaví", "El Bosque", "El Monte", "Estación Central", "Huechuraba", "Independencia", "Isla de Maipo", "La Cisterna", "La Florida", "La Granja", "La Pintana", "La Reina", "Lampa", "Las Condes", "Lo Barrenechea", "Lo Espejo", "Lo Prado", "Macul", "Maipú", "María Pinto", "Melipilla", "Ñuñoa", "Padre Hurtado", "Paine", "Pedro Aguirre Cerda", "Peñaflor", "Peñalolén", "Pirque", "Providencia", "Pudahuel", "Puente Alto", "Quilicura", "Quinta Normal", "Recoleta", "Renca", "San Bernardo", "San Joaquín", "San José de Maipo", "San Miguel", "San Pedro", "San Ramón", "Santiago", "Talagante", "Tiltil", "Vitacura"]
-        },
-        {
-            "region": "Región Arica y Parinacota",
-            "comunas": ["Corral", "Futrono", "La Unión", "Lago Ranco", "Lanco", "Los Lagos", "Mariquina", "Máfil", "Paillaco", "Panguipulli", "Río Bueno", "Valdivia"]
-        },
-        {
-            "region": "Región Arica y Parinacota",
-            "comunas": ["Arica", "Camarones", "Gral. Lagos", "Putre"]
-        },
-        {
-            "region": "Región del Ñuble",
-            "comunas": ["Bulnes", "Chillán", "Chillán Viejo", "Cobquecura", "Coelemu", "Coihueco", "El Carmen", "Ninhue", "Pemuco", "Pinto", "Portezuelo", "Quillón", "Quirihue", "Ránquil", "San Carlos", "San Fabián", "San Ignacio", "San Nicolás", "Trehuaco", "Yungay", "Ñiquén"]
-        },
-    ]
-}
-
-
 let amount_added = 0;
 const selected_products = [0,0,0,0,0];
 
@@ -161,26 +22,13 @@ const check_lock = (checkbox) => {
 
     const update_product_select = (checkbox) => {
 
-        if(checkbox == "fruit"){
-            PRODUCTS.fruit.forEach(element => {
-                product_select.innerHTML += `<option value="${element}">${element}</option>`;
-            });
-        }
-        else{
-            PRODUCTS.vegetable.forEach(element => {
-                product_select.innerHTML += `<option value="${element}">${element}</option>`;
-            });
-        }
-        // if(checkbox == "fruit"){
-
-        //     PRODUCTS.fruit.forEach((product, idx) => {
-        //         product_options.innerHTML += `<label for="${idx}">${product}</label>`
-
-        //         product_options.innerHTML += `<input type="checkbox">`
-        //     })
-
-        // }
-
+        fetch(`http://localhost:5000/get-products-of-type-${checkbox}/`)
+            .then((response) => {return response.json()})
+            .then((json) => {
+                json.forEach((product) => {
+                    product_select.innerHTML += `<option value=${product[1]}>${product[1]}</option>`;
+                })
+            })
 
     }
 
@@ -203,7 +51,7 @@ const check_lock = (checkbox) => {
     else{
         other.disabled = false;
         product_select.disabled = true;
-        product_select.innerHTML = ";";
+        product_select.innerHTML = "";
     }
 
 };
@@ -250,29 +98,31 @@ const add_product = () => {
     }
 }
 
-const update_region_select = () => {
-    region_select.innerHTML = `<option value="-1">         </option>`;
-
-    REGIONS.regiones.forEach((element, idx) => {
-        region_select.innerHTML += `<option value="${idx+1}">${element.region}</option>`
-    })        
-
-    update_city_select()
-}
-
 const update_city_select = () => {
-    city_select.innerHTML = `<option value="-1">         </option>`;
 
-    if(region_select.value == -1){return}
+    const region_id = region_select.value;
+    city_select.innerHTML = '';
 
-    const region_idx = region_select.value-1;
-
-    REGIONS.regiones[region_idx].comunas.forEach(element => {
-        city_select.innerHTML += `<option>${element}</option>`;
-    })
-
-
+    fetch(`http://localhost:5000/get-cities-from-region-${region_id}/`)
+        .then((response) => {return response.json()})
+        .then((json) =>{
+            json.forEach((city) => {
+                city_select.innerHTML += `<option value="${city[0]}">${city[1]}</option>`;
+            })
+        })
 }
+
+const update_region_select = () => {
+    fetch('http://localhost:5000/get-regions-info/')
+        .then((response) => {return response.json()})
+        .then((json) =>{
+            json.forEach((region) => {
+                region_select.innerHTML += `<option value="${region[0]}">${region[1]}</option>`;
+            })
+        })
+}
+
+
 
 const lock_form = (val) => {
     inputs.forEach(element => {if(element){element.disabled = val}});
@@ -298,13 +148,13 @@ const validate_form = () => {
     }
 
 
-    const valid_checkbox = fruit_checkbox.checked || vegetable_checkbox.checked;
+    const valid_checkbox = (fruit_checkbox.checked || vegetable_checkbox.checked) && !(fruit_checkbox.checked && vegetable_checkbox.checked);
     const valid_products = amount_added > 0;
     let valid_files;
     if(file_input){valid_files = file_input.files.length >= 1 && file_input.files.length <= 3;}
     else{valid_files = true}
-    const valid_region = region_select.value != -1;
-    const valid_city = city_select.value != -1;
+    const valid_region = 1 <= region_select.value && region_select.value < 16;
+    const valid_city = 10101 <= city_select.value && city_select.value < 130606;
     const valid_name = !empty(form_name.value) && form_name.value.length >= 3 && form_name.value.length < 80;
     const valid_email = form_email.value.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/) != null;
     const valid_phone = !form_phone.value || form_phone.value.replaceAll(' ','').match(/^(\+?56)?(\s?)(2|9)(\s?)[98765432]\d{7}$/) != null;

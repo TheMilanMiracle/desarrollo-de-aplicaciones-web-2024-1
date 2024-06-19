@@ -5,7 +5,7 @@ import filetype
 import datetime
 from flask_cors import cross_origin
 from flask import Flask, request, render_template, url_for, redirect, jsonify
-from db.query import get_product_quantity, get_order_quantity, new_product, get5products, get_product_info, new_order, get5orders, get_order_info, stats_query
+from db.query import get_products, get_regions, get_cities, get_product_quantity, get_order_quantity, new_product, get5products, get_product_info, new_order, get5orders, get_order_info, stats_query
 from utilities.validations import validate_checkboxes, validate_product_list, validate_images, validate_region, validate_city, validate_name, validate_email, validate_phone
 from werkzeug.utils import secure_filename
 
@@ -50,7 +50,7 @@ def agregar_producto():
 
         valid = validate_region(request.form, valid, errors)
 
-        valid, city_id = validate_city(request.form, valid, errors)
+        valid = validate_city(request.form, valid, errors)
         
         valid = validate_name(request.form, valid, errors)
 
@@ -82,7 +82,7 @@ def agregar_producto():
                 "type" : "fruta" if "fruit" in request.form else "verdura",
                 "products" : list(filter((lambda key: request.form[key] == "product"), request.form)),
                 "desc" : request.form["description"],
-                "city" : city_id,
+                "city" : request.form["city"],
                 "name" : request.form["name"],
                 "email" : request.form["email"],
                 "phone" : request.form["phone"],
@@ -167,8 +167,8 @@ def agregar_pedido():
 
         valid = validate_region(request.form, valid, errors)
 
-        valid, city_id = validate_city(request.form, valid, errors)
-        
+        valid = validate_city(request.form, valid, errors)
+
         valid = validate_name(request.form, valid, errors)
 
         valid = validate_email(request.form, valid, errors)
@@ -177,14 +177,13 @@ def agregar_pedido():
 
         print(valid)
 
-
         if valid:
 
             new_order({
                 "type" : "fruta" if "fruit" in request.form else "verdura",
                 "products" : list(filter((lambda key: request.form[key] == "product"), request.form)),
                 "desc" : request.form["description"],
-                "city" : city_id,
+                "city" : request.form["city"],
                 "name" : request.form["name"],
                 "email" : request.form["email"],
                 "phone" : request.form["phone"],
@@ -246,6 +245,28 @@ def informacion_pedido(id):
 @app.route("/estadisticas/", methods=("GET", ))
 def estadisticas():
     return render_template("pages/estadisticas.html")
+
+
+@app.route("/get-products-of-type-<t>/")
+@cross_origin(origin="localhost", supports_credentials=True)
+def get_products_of_type(t=""):
+    t = str(t)
+
+    if t == "fruit" or t == "vegetable":
+        return jsonify(get_products(t))
+
+@app.route("/get-cities-from-region-<region_id>/")
+@cross_origin(origin="localhost", supports_credentials=True)
+def get_cities_from_region(region_id=-1):
+    region_id = int(region_id)
+
+    return jsonify(get_cities(region_id))
+
+
+@app.route("/get-regions-info/", methods=("GET", ))
+@cross_origin(origin="localhost", supports_credentials=True)
+def get_regions_info():
+    return jsonify(get_regions())
 
 
 @app.route("/get-stats/", methods=("GET", ))

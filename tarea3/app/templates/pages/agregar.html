@@ -108,7 +108,7 @@
         <div class = "form-item">
 
             <div class="horizontal-flex">
-            <label for="name"><span class="error">*</span>Nombre {% if kind=='producto' %}productor{% else %}productor{% endif %}</label>
+            <label for="name"><span class="error">*</span>Nombre {% if kind=='producto' %}productor{% else %}comprador{% endif %}</label>
             <input type="text" name="name" id="name" size="80" minlength="3" maxlength="80">
 
             <span class="error" id="error6">{{ name }}</span>
@@ -119,7 +119,7 @@
         <div class = "form-item">
 
             <div class="horizontal-flex">
-            <label for="email"><span class="error">*</span>Email comprador</label>
+            <label for="email"><span class="error">*</span>Email {% if kind=='producto' %}productor{% else %}comprador{% endif %}</label>
             <input type="text" name="email" id="email"  size="30" minlength="3" maxlength="80">
 
             <span class="error" id="error7">{{ email }}</span>
@@ -130,7 +130,7 @@
         <div class = "form-item">
 
             <div class="horizontal-flex">
-            <label for="phone">Número telefónico comprador</label>
+            <label for="phone">Número telefónico {% if kind=='producto' %}productor{% else %}comprador{% endif %}</label>
             <input type="text" name="phone" id="phone"  size="15" minlength="3" maxlength="80">
 
             <span class="error" id="error8">{{ phone }}</span>

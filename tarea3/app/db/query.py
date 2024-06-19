@@ -21,13 +21,35 @@ def get_conn():
 	)
 	return conn
 
+def get_products(type):
+	
+	conn = get_conn()
+	cursor = conn.cursor()
+
+	if type == "fruit":
+		cursor.execute("select id, nombre from tipo_verdura_fruta where id <= 37 order by nombre")
+	
+	if type == "vegetable":
+		cursor.execute("select id, nombre from tipo_verdura_fruta where id > 37 order by nombre")	
+
+	return [(t[0], t[1]) for t in cursor.fetchall()]	
+
+
+def get_regions():
+
+	conn = get_conn()
+	cursor = conn.cursor()
+
+	cursor.execute("select id, nombre from region order by id")
+
+	return [(t[0], t[1]) for t in cursor.fetchall()]
 
 def get_cities(region_id):
 
 	conn = get_conn()
 	cursor = conn.cursor()
 
-	cursor.execute(f"select id, nombre from comuna where region_id=%s", region_id)
+	cursor.execute("select id, nombre from comuna where region_id=%s order by nombre", region_id)
 
 	return [(t[0], t[1]) for t in cursor.fetchall()]
 

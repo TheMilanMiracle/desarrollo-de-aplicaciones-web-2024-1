@@ -79,22 +79,13 @@ def validate_region(form, valid, errors):
 
 
 def validate_city(form, valid, errors):
-    city_id = 0
-
-    if form["city"] == "-1":
-        errors["city"] = "Debe seleccionar una comuna"
-        valid = False  
-    else:
-        for city in get_cities(form["region"]):
-            if form["city"].lower() in city[1].lower():
-                city_id = city[0]
-                break
-
-        if not city_id:
-            errors["city"] = "Debe seleccionar una comuna válida"
-            valid = False  
+    for city in get_cities(form["region"]):
+        if city[0] == int(form["city"]):
+            return True
     
-    return valid, city_id
+    errors["city"] = "Debe seleccionar una comuna válida"
+    
+    return False
 
 
 def validate_name(form, valid, errors):
