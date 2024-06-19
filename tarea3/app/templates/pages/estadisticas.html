@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %} Estadísticas {% endblock %}
+
+{% block navbar %} 
+
+<a class="home-button" href="/">Inicio</a>
+
+<h1>Estadísticas</h1>
+
+{% endblock %}
+
+{% block content%}
+
+<div id="form-container" class="bordered">
+
+
+    <div id="product-chart" class="chart"></div>
+    <div id="order-chart" class="chart"></div>
+
+
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="{{ url_for('static', filename='js/stats.js') }}"></script>
+{% endblock %}

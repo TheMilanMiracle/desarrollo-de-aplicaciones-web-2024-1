@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+
+{% block title %} Nuevo {{ kind }} {% endblock %}
+
+{% block navbar %} 
+
+<a class="home-button" href="/">Inicio</a>
+
+<h1>Añadir un nuevo {{ kind }}</h1>
+
+{% endblock %}
+
+
+{% block content%}
+
+<div id="form-container" class="bordered">
+    <form id="new-form" action="agregar-{{kind}}" method="post" enctype="multipart/form-data">
+
+        <div class="form-item horizontal-flex">
+            <span><span class="error">*</span><b>Tipo de {{ kind }}</b></span>
+            
+            <div>
+                <label for="fruit-checkbox">Fruta</label>
+                <input type="checkbox" name="fruit" id="fruit-checkbox">
+            </div>
+
+            <div>
+                <label for="vegetable-checkbox">Vegetal</label>
+                <input type="checkbox" name="vegetable" id="vegetable-checkbox">
+            </div>
+
+            <span class="error" id="error1">{{ checkbox }}</span>
+        </div>
+
+        <div class="form-item">
+
+            <div class="horizontal-flex">
+                <label for="product-select"><span class="error">*</span>Agregar producto (Máximo 5)</label>
+                
+                <select id="product-select" disabled></select>
+
+                <span class="error" id="error2">{{ products }}</span>
+
+            </div>
+            
+        </div>
+
+        <div class="form-item">
+
+            <div class="horizontal-flex">
+                <div id="product-1"><p></p></div>
+                <div id="product-2"><p></p></div>
+                <div id="product-3"><p></p></div>
+                <div id="product-4"><p></p></div>
+                <div id="product-5"><p></p></div>
+            </div>
+
+        </div>
+
+        <div class="form-item">
+
+            <div class="horizontal-flex">
+                <label for="description">Descripción</label>
+                <textarea id="description" name="description" rows="4" cols="50" >{{ description }}</textarea>
+            </div>
+
+        </div>
+
+        {% if kind=='producto' %}
+
+
+        <div class="form-item">
+
+            <div class="horizontal-flex">
+                <label for="file-input"><span class="error">*</span>Foto(s) de Producto(s)</label>
+                <input type="file" name="images" id="file-input" multiple>
+
+                <span class="error" id="error3">{{ images }}</span>
+            </div>
+
+        </div>
+
+
+        {% endif %}
+
+        <div class="form-item">
+
+            <div class="horizontal-flex">
+            <label for="region-select"><span class="error">*</span>Región</label>
+            <select id="region-select" name="region"></select>
+
+            <span class="error" id="error4">{{ region }}</span>
+            </div>
+
+        </div>
+
+        <div class="form-item">
+
+            <div class="horizontal-flex">
+            <label for="city-select"><span class="error">*</span>Comuna</label>
+            <select id="city-select" name="city"></select>
+
+            <span class="error" id="error5">{{ city }}</span>
+            </div>
+
+        </div>
+
+        <div class = "form-item">
+
+            <div class="horizontal-flex">
+            <label for="name"><span class="error">*</span>Nombre {% if kind=='producto' %}productor{% else %}productor{% endif %}</label>
+            <input type="text" name="name" id="name" size="80" minlength="3" maxlength="80">
+
+            <span class="error" id="error6">{{ name }}</span>
+            </div>
+
+        </div>
+
+        <div class = "form-item">
+
+            <div class="horizontal-flex">
+            <label for="email"><span class="error">*</span>Email comprador</label>
+            <input type="text" name="email" id="email"  size="30" minlength="3" maxlength="80">
+
+            <span class="error" id="error7">{{ email }}</span>
+            </div>
+
+        </div>
+
+        <div class = "form-item">
+
+            <div class="horizontal-flex">
+            <label for="phone">Número telefónico comprador</label>
+            <input type="text" name="phone" id="phone"  size="15" minlength="3" maxlength="80">
+
+            <span class="error" id="error8">{{ phone }}</span>
+            </div>
+
+        </div>
+
+        <div>
+            <button type="button" class="button1" id="submit-button">Agregar {{ kind }}</button>
+        </div>
+
+        <div id="modal" class="modal" data-value="pedido">
+        </div>
+
+    </form>
+
+    
+</div>
+
+
+{% endblock %}
+
+{% block script%}<script src="{{ url_for('static', filename='js/form.js') }}"></script>{% endblock %}
